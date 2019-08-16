@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Courtesty Plumbing of AZ</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+	<link rel="stylesheet" type="text/css" href="StyleSheets/courtesy.css">
+
+	<script src="https://mysqljs.com/mysql.js" type="text/javascript"></script>
+
+    <script>
+
+      function processForm() {
+
+        let sqlStmt, whereClause = "";
+
+        sqlStmt = "SELECT * FROM ProductService ";
+
+        //whereClause = " WHERE cust_id = 1000000002"
+        whereClause = " WHERE Name = '" + document.getElementById("Name").value + "'";
+
+        sqlStmt = sqlStmt + whereClause;
+
+        console.log(sqlStmt);
+
+        MySql.Execute(
+            "sql.wpc-is.online",  // remote host
+            "teamb06",           // username
+            "teamb063165",           // password
+            "db_teamb06",    // database name
+
+            sqlStmt,              // SQL statement
+
+            function (data) {       // callback function
+
+              document.getElementById("output").innerHTML = data;
+              console.log("data parameter: " + data);
+              
+              var dataAsString = JSON.stringify(data);
+              document.getElementById("output").innerHTML = dataAsString;
+              
+             console.log("Single row as obj: " + data.Result[0]);
+              console.log("Single row as string: " + JSON.stringify(data.Result[0]));
+              console.log("Single row, single column: " + data.Result[0].Name);
+
+              
+              
+              var prodCost = JSON.parse(data.Result[0].Cost,null,2);
+              var prodDesc = JSON.stringify(data.Result[0].Description,null,2);
+             
+
+              var salesTax = prodCost * .07;
+              var fee = prodCost * .01;
+
+              var totalFees = salesTax+fee;
+
+              var totalCost = totalFees + prodCost;
+
+              console.log(prodCost, salesTax, fee, totalCost, prodDesc);
+
+              
+
+              
+				//document.getElementById("output").innerHTML = totalCost.toFixed(2);
+
+             document.getElementById("output").innerHTML = "$" + totalCost.toFixed(2) +" -- "+ prodDesc;
+
+              
+
+
+
+            }
+        );
+
+      }
+
+    </script>
+</head>
+<body>
+	<header>
+		<h1><em><strong>Courtesy Plumbing of AZ</strong></em></h1>
+	</header>
+
+	<main>
+		<div class="sidebar">
+		<a href="courtesy_plumbing.html" style="font-size: 40px;">Courtesy<br>Plumbing<br>Of AZ</a><hr>
+		<a href="courtesy_plumbing.html">Home</a><hr>
+		<a href= "Products&Services.html">Products & Services</a>
+		<!-- <ul> -->
+			<a href="Products&Services.html#HotWaterSystems", style="font-size: 20px">- Hot water Systems</a>
+			<a href="Products&Services.html#Fixtures", style="font-size: 20px">- Fixtures</a>
+			<a href="Products&Services.html#RootIntrusionSystem", style="font-size: 20px">- Root Intrusion Solutions</a><hr>
+		<a href= "courtesyContact.html" target= "_self">Contact</a><hr>
+	</div>
+		<div class="content">
+			<div id=HotWaterSystems>
+				<h2>Hot Water Systems</h2>
+				<table>
+					<tr>
+						<td align="left" width="85%">
+							<strong>Bradford White - Hydrojet Total Performance System</strong><br><br>
+						The Bradford White water heaters are American made. The factory installed Hydrojet Total Performance System is a revolutionary way of introducing water into the tank so that it gets hot quickly, but also improves the efficiency and lengthens the life of your water heater. The Hydrojet system redirects the flow of incoming water and causes better mixing throughout the water heater tank allowing water to be heated more effectively. This turbulence also helps to remove sediment from the tank. With this system the water heater runs less, saving energy, time and money.<br>
+						Bradford White water heaters come with a standard 6 year warranty on the tank and tank parts. Courtesy Plumbing warranties water heaters that we install for 1 year on labor and material. We also offer an extended 10 year warranty which includes replacement of water heater, labor and material while under warranty.</td>
+					<td width="20%">
+						<img border="0" src=images/heater.gif alt="heater">
+					</td>
+				</tr>
+				<td align="left" width="79%">
+					<br>
+					<strong>The Grundfos Comfort Series Instant Hot Water System</strong><br><br>
+					The Grundfos Comfort system puts hot water into the hot water line instantly, using a pump with a built in timer at the water heater and a patented bypass valve at the point of use. This Grundfos Comfort System provides the constant availability of hot water - without the wait or the waste! The pump’s unique design ensures quiet, maintenance-free operation.
+					<br>
+					After your water faucet has been turned off, water remains stationary in pipes and cools. Water that cools overnight becomes a cold shower in the morning. When you have to run off the cooled water before the warm water comes out, those gallons are lost down the drain, becoming wasted water. 
+					<br>
+					<strong>Ownership Features:</strong>
+					<ul>
+						<li>Instant Hot Water - No waiting or fumbling with shower or faucet controls</li>
+						<li>Water Conservation - Saves up to 16,000 gallons of water per year per household (average usage)</li>
+						<li>Cost Savings - Reduces water utility costs and related charges</li>
+						<li>Whisper Quiet Operation - Minimizes operational sound output</li>
+						<li>Maintenance Free - No maintenance, no worries - just the enjoyment of instant hot water</li>
+					<td width=20%>
+						<img src="images/heater2.jpg">
+						<br><br><br>
+						<img src="images/heater3.jpg">
+					</td>
+			</table>
+		</div>			
+<hr>
+
+
+<br>
+		<div id="Fixtures">
+			<h2>Fixtures</h2>
+			<table>
+				<td>
+					<tr>
+							We offer a full line of fixtures including Wolverine Brass, Kohler, Moen, Delta, Price Pfister and many more!
+ 							You can improve the look and value of your home with new faucets, sinks and toilets!
+ 					</tr>
+ 					<tr>
+ 						<p style="font-size: 20px"><strong>Wolverine Brass<br>
+ 							Kitchen and Lavatory<br></p></strong>
+ 					</tr>
+ 					<tr>
+ 							<p><img src="images/faucet.jpg" alt="faucet">
+ 							<img 
+ 							style="width: 124px; height: 100px" src="images/faucet1.jpg" alt="faucet"></p>
+ 							<p>
+ 							<img src="images/faucet2.jpg" alt="faucet">
+ 							<img src="images/faucet3.jpg" alt="faucet">
+ 							</p>
+ 					</tr>
+ 					<tr>
+ 						<p style="font-size: 20px"><strong>Moen Faucets - Kitchen and Lavatory<strong><br></p>
+ 					</tr>
+ 				</td>
+ 				<td>
+ 					<tr>
+ 						<p><img src="images/faucet5.gif" alt="faucet">
+ 							<img src="images/faucet6.gif" alt="faucet"></p>
+ 							<p>
+ 							<img src="images/faucet7.gif" alt="faucet">
+ 							<img src="images/faucet8.gif" alt="faucet">
+ 							</p>
+ 						</tr>
+ 				</td>
+ 				<td>
+ 					<tr>
+ 						<p style="font-size: 20px"><strong>Kohler - Kitch
+ 							en Sink, Lavatory Sink and Toilet<strong><br></p></strong></strong></p>
+ 						</tr>
+ 						<tr>
+ 							<p><img src="images/sink1.jpg" alt="faucet" height="150px" width="300px">
+ 							<img src="images/sink2.gif" alt="faucet">
+ 							<img src="images/toilet.jpg" alt="faucet">
+ 							</p>
+ 						</tr>
+
+
+
+			</table>
+			<hr>
+
+
+		<div id="RootIntrusionSystem">
+			<h2> Root Intrusion system </h2>
+			<table>
+				<tr>
+					<td><img src="images/roots.gif" alt="Rootx"></td>
+					<td><img src="images/rootx.gif" alt="Rootx"></td>
+					<td><img src="images/clean.gif" alt="Rootx"></td>
+				</tr>
+				<tr>
+					<td><strong>Roots can clog pipes causing blockages and sewer overflows.</strong><br></td>
+					<td><strong>RootX attacks and kills the roots.</strong><br></td>
+					<td><strong>RootX removes virtually all the roots, restoring pipeflow capacity.</strong><br></td>
+				</tr>
+				<tr>
+					<td>
+					RootX is the original, non-metam sodium foaming root control in an easy-to-apply powdered formulation. It foams on contact with water to kill roots and inhibit growth.</td>
+					<td>- RootX enhances mechanical removal effectiveness<br> 
+				- RootX sticks to the roots and the pipe walls to kill the roots and inhibit growth<br> 
+				- More cost-effective than mechanical removal<br> 
+				- The RootX makes any applicator a root control professional<br></td>
+					<td>
+						- Contains no copper sulfate or metam sodium<br> 
+						- Effective directly from the package or with existing equipment 
+					</td>
+				</tr>
+			</table>
+
+		<h3>Enzyme / Bacteria Waste & Grease Digestant</h3>
+		<p style="font-size: 15px">
+			Environmentally Safe Protection<br> 
+			Bio-Degradable - Non-Poisonous - Nontoxic - Non Caustic - Non-Corrosive <br>
+			Home Drains - Septic Tanks - Restaurants - Grease Traps<br><br>
+			The enzymes and bacteria attack organic materials and then decompose them by a natural enzymatic bacteria process. Enzymes break down the solids, thus allowing bacteria to fully utilize them as a food source (converting these organics to CO 2 and water). Enzymes need to be present to break down the waste before the bacteria can perform their digestion. The enzymes we use are unique in that each one is functional and contributes to the biodegrading process.
+			They are:<br>
+			<strong>Lipase</strong> - breaks down grease, oils and fats<br>
+			<strong>Pectinase</strong> - breaks down pectin's and gums<br>
+			<strong>Cellulase</strong> - breaks down papers and fibers<br>
+			<strong>Amylase</strong> - breaks down starches<br>
+			<strong>Protease</strong> - breaks down proteins<br><br>
+
+			Many harsh chemicals will kill off the biological activity within your system. It is important to replace these natural enzymes and bacteria on a regular basis to keep the biological activity strong within your system.<br>
+			<br>
+			The biodegrading process is effective at reducing the buildup in pipes, helps reduce solids in the septic tank and soil absorption area, plus reduces grease buildup in grease traps.<br> <br>
+			No one enjoys the foul odors, messy clean up and hassles of clogged drains! Contact us Today to Help keep your drains, septic tanks and grease traps clean and running smoothly!<br>
+		</p>
+<hr>
+
+		<h2>Products and Service Pricing</h2>
+    <form name="dataHandlingForm" >
+
+      <label for="productID">Product/Service</label>
+ 
+ 	<select id = "Name">
+				<option>Bradford White</option>
+				<option>Grundfos Comfort Series</option>
+				<option>Wolverine Brass Faucet - Chrome</option>
+				<option>Wolverine Brass Faucet - White</option>
+				<option>Wolverine Brass Faucet - Silver</option>
+				<option>Wolverine Brass Faucet - Gold</option>
+				<option>Moen Kitchen Faucet - Chrome</option>
+				<option>Moen Kitchen Faucet - White</option>
+				<option>Moen Bathroom Faucet - Silver</option>
+				<option>Moen Bathroom Faucet - White</option>
+				<option>Kohler - Kitchen Sink</option>
+				<option>Kohler -- Bathroom Sink</option>
+				<option>Kohler - Toilet - White</option>
+				<option>Root Intrusion System</option>
+				<option>Faucet Repair</option>
+				<option>Plumbing Service</option>
+				<option>Water Main Repair</option>
+				<option>Faucet Installation</option>
+				<option>Sink Installation</option>
+				
+			</select>
+ 
+
+       <!-- <input type="text" id="RecNumber"><br><br> -->
+
+
+      
+      <input type="button" value="Get Product Total Cost / Description:" onclick="processForm()">
+
+    </form>
+
+    <p id ="output"></p>
+
+
+
+				
+		
+
+</body>
+</html>
